@@ -1,13 +1,12 @@
 {
   "name": "add-cursors",
   "main": "./lib/add-cursors",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Add cursors to every line in the current document. Left or right.",
   "keywords": [
     "cursors"
   ],
   "activationCommands": {
-    "atom-workspace": "add-cursors:left",
     "atom-workspace": "add-cursors:right"
   },
   "repository": "https://github.com/Fredrik01/atom-add-cursors.git",
@@ -15,6 +14,5 @@
   "engines": {
     "atom": ">=1.0.0 <2.0.0"
   },
-  "dependencies": {
-  }
+  "dependencies": {}
 }
