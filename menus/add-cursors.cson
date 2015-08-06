@@ -1,0 +1,25 @@
+'context-menu':
+  'atom-text-editor': [
+    {
+      'label': 'Add cursors right'
+      'command': 'add-cursors:right'
+    }
+  ]
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'Add Cursors'
+      'submenu': [
+        {
+          'label': 'Left'
+          'command': 'add-cursors:left'
+        },
+        {
+          'label': 'Right'
+          'command': 'add-cursors:right'
+        }
+      ]
+    ]
+  }
+]
