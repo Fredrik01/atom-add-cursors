@@ -30,7 +30,6 @@ module.exports = AddCursors =
     if @editor = atom.workspace.getActiveTextEditor()
       @removeCursors()
       lines = @editor.getLineCount()
-      console.log lines
       for line in [0..lines-1]
         @editor.addCursorAtScreenPosition [line, 0]
 
