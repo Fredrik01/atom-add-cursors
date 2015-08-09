@@ -7,7 +7,10 @@
     "cursors"
   ],
   "activationCommands": {
-    "atom-workspace": "add-cursors:right"
+    "atom-workspace": [
+      "add-cursors:left",
+      "add-cursors:right"
+    ]
   },
   "repository": "https://github.com/Fredrik01/atom-add-cursors.git",
   "license": "MIT",
