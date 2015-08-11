@@ -1,7 +1,7 @@
 {
   "name": "add-cursors",
   "main": "./lib/add-cursors",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Add cursors to every line in the current document. Left or right.",
   "keywords": [
     "cursors"
