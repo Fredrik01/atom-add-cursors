@@ -34,28 +34,36 @@ module.exports = AddCursors =
           return true
     false
 
-  add: (direction) ->
-    if @editor = atom.workspace.getActiveTextEditor()
-      if @selectionExists()
-        selections = @editor.getSelections()
-        for selection in selections
-          if selection.getText().length > 0
-            range = selection.getScreenRange()
-            selection.clear()
-            for line in range.getRows()
-              cursor = @editor.addCursorAtScreenPosition [line, 0]
-              if direction == 'right'
-                cursor.moveToEndOfScreenLine()
-      else
-        @moveAllCursorsToTheLeftSide()
-        lines = @editor.getLineCount()
-        for line in [0..lines-1]
+  addCursorsToSelectedLines: ->
+    selections = @editor.getSelections()
+    for selection in selections
+      if selection.getText().length > 0
+        range = selection.getScreenRange()
+        selection.clear()
+        for line in range.getRows()
           cursor = @editor.addCursorAtScreenPosition [line, 0]
-          if direction == 'right'
+          if @direction == 'right'
             cursor.moveToEndOfScreenLine()
 
+  addCursorsToAllLines: ->
+    @moveAllCursorsToTheLeftSide()
+    lines = @editor.getLineCount()
+    for line in [0..lines-1]
+      cursor = @editor.addCursorAtScreenPosition [line, 0]
+      if @direction == 'right'
+        cursor.moveToEndOfScreenLine()
+
+  addCursors: ->
+    if @editor = atom.workspace.getActiveTextEditor()
+      if @selectionExists()
+        @addCursorsToSelectedLines()
+      else
+        @addCursorsToAllLines()
+
   left: ->
-    @add 'left'
+    @direction = 'left'
+    @addCursors()
 
   right: ->
-    @add 'right'
+    @direction = 'right'
+    @addCursors()
