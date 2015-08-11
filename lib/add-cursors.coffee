@@ -21,7 +21,7 @@ module.exports = AddCursors =
   serialize: ->
     addCursorsViewState: @addCursorsView.serialize()
 
-  removeCursors: ->
+  moveAllCursorsToTheLeftSide: ->
     cursors = @editor.getCursors()
     for cursor in cursors
       cursor.moveToBeginningOfScreenLine()
@@ -34,23 +34,28 @@ module.exports = AddCursors =
           return true
     false
 
-  left: ->
+  add: (direction) ->
     if @editor = atom.workspace.getActiveTextEditor()
       if @selectionExists()
         selections = @editor.getSelections()
         for selection in selections
-          range = selection.getScreenRange()
-          selection.clear()
-          for line in range.getRows()
-            @editor.addCursorAtScreenPosition [line, 0]
+          if selection.getText().length > 0
+            range = selection.getScreenRange()
+            selection.clear()
+            for line in range.getRows()
+              cursor = @editor.addCursorAtScreenPosition [line, 0]
+              if direction == 'right'
+                cursor.moveToEndOfScreenLine()
       else
-        @removeCursors()
+        @moveAllCursorsToTheLeftSide()
         lines = @editor.getLineCount()
         for line in [0..lines-1]
-          @editor.addCursorAtScreenPosition [line, 0]
+          cursor = @editor.addCursorAtScreenPosition [line, 0]
+          if direction == 'right'
+            cursor.moveToEndOfScreenLine()
+
+  left: ->
+    @add 'left'
 
   right: ->
-    @left()
-    cursors = @editor.getCursors()
-    for cursor in cursors
-      cursor.moveToEndOfScreenLine()
+    @add 'right'
