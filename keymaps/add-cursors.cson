@@ -7,5 +7,6 @@
 
 # For more detailed documentation see
 # https://atom.io/docs/latest/behind-atom-keymaps-in-depth
-# 'atom-workspace':
-  # 'ctrl-alt-o': 'add-cursors:left'
+'atom-workspace':
+  'alt-shift-l': 'add-cursors:left'
+  'alt-shift-r': 'add-cursors:right'
